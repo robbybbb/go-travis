@@ -1,4 +1,4 @@
-module github.com/shuheiktgw/go-travis
+module github.com/robbybbb/go-travis
 
 go 1.14
 
