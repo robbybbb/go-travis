@@ -8,6 +8,7 @@ package travis
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 	"net/url"
 )
@@ -163,6 +164,7 @@ func (bs *BuildsService) Find(ctx context.Context, id uint, opt *BuildOption) (*
 //
 // Travis CI API docs: https://developer.travis-ci.com/resource/builds#for_current_user
 func (bs *BuildsService) List(ctx context.Context, opt *BuildsOption) ([]*Build, *http.Response, error) {
+	log.Printf("Made it here Build List: %v", 3)
 	u, err := urlWithOptions("builds", opt)
 	if err != nil {
 		return nil, nil, err

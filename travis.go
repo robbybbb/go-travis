@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -311,6 +312,7 @@ func urlWithOptions(s string, opt interface{}) (string, error) {
 	}
 
 	u.RawQuery = qs.Encode()
+	log.Printf("Made it to urlWithOptions: %s", u.String())
 	return u.String(), nil
 }
 
