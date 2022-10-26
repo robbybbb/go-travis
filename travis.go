@@ -124,10 +124,14 @@ func NewClient(baseUrl string, travisToken string) *Client {
 	c.Stages = &StagesService{client: c}
 	c.User = &UserService{client: c}
 
+	log.Printf("Token: %s", travisToken)
 	if travisToken != "" {
 		c.SetToken(travisToken)
 	}
-
+	var h = c.Headers
+	for k, v := range h {
+		log.Printf("Initial Creation Headers k, v: %s %s", k, v)
+	}
 	return c
 }
 
