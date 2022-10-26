@@ -170,6 +170,11 @@ func (bs *BuildsService) List(ctx context.Context, opt *BuildsOption) ([]*Build,
 		return nil, nil, err
 	}
 
+	var h = bs.client.Headers
+	for k, v := range h {
+		log.Printf("Build List Headers k, v: %s %s", k, v)
+	}
+
 	req, err := bs.client.NewRequest(http.MethodGet, u, bs.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
