@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -179,7 +180,10 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}, headers map
 	}
 
 	req.Header.Set("User-Agent", c.UserAgent)
-
+	log.Printf("Header: %T", req.Header)
+	log.Printf("Method: %s", req.Method)
+	log.Printf("Url: %s", req.URL.Opaque)
+	log.Printf("Url: %s", req.RequestURI)
 	return req, nil
 }
 
