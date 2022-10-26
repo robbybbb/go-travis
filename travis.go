@@ -169,21 +169,22 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}, headers map
 	}
 
 	var h = c.Headers
+	log.Printf("headers: %T", h)
 	if headers != nil {
 		for k, v := range headers {
 			h[k] = v
 		}
 	}
+	log.Printf("header h: %T", h)
 
 	for k, v := range h {
 		req.Header.Set(k, v)
 	}
 
 	req.Header.Set("User-Agent", c.UserAgent)
-	log.Printf("Header: %T", req.Header)
-	log.Printf("Method: %s", req.Method)
-	log.Printf("Url: %s", req.URL.Opaque)
-	log.Printf("Url: %s", req.RequestURI)
+	log.Printf("req.Header: %T", req.Header)
+	log.Printf("req.Method: %s", req.Method)
+	log.Printf("req.Url: %s", req.URL)
 	return req, nil
 }
 
