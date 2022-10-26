@@ -170,7 +170,7 @@ func (bs *BuildsService) List(ctx context.Context, opt *BuildsOption) ([]*Build,
 		return nil, nil, err
 	}
 
-	req, err := bs.client.NewRequest(http.MethodGet, u, nil, nil)
+	req, err := bs.client.NewRequest(http.MethodGet, u, bs.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}
