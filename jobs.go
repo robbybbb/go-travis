@@ -109,7 +109,7 @@ func (js *JobsService) Find(ctx context.Context, id uint, opt *JobOption) (*Job,
 		return nil, nil, err
 	}
 
-	req, err := js.client.NewRequest(http.MethodGet, u, nil, nil)
+	req, err := js.client.NewRequest(http.MethodGet, u, js.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -132,7 +132,7 @@ func (js *JobsService) ListByBuild(ctx context.Context, buildId uint) ([]*Job, *
 		return nil, nil, err
 	}
 
-	req, err := js.client.NewRequest(http.MethodGet, u, nil, nil)
+	req, err := js.client.NewRequest(http.MethodGet, u, js.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -157,7 +157,7 @@ func (js *JobsService) List(ctx context.Context, opt *JobsOption) ([]*Job, *http
 		return nil, nil, err
 	}
 
-	req, err := js.client.NewRequest(http.MethodGet, u, nil, nil)
+	req, err := js.client.NewRequest(http.MethodGet, u, js.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -180,7 +180,7 @@ func (js *JobsService) Cancel(ctx context.Context, id uint) (*Job, *http.Respons
 		return nil, nil, err
 	}
 
-	req, err := js.client.NewRequest(http.MethodPost, u, nil, nil)
+	req, err := js.client.NewRequest(http.MethodPost, u, js.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -203,7 +203,7 @@ func (js *JobsService) Restart(ctx context.Context, id uint) (*Job, *http.Respon
 		return nil, nil, err
 	}
 
-	req, err := js.client.NewRequest(http.MethodPost, u, nil, nil)
+	req, err := js.client.NewRequest(http.MethodPost, u, js.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -228,7 +228,7 @@ func (js *JobsService) Debug(ctx context.Context, id uint) (*Job, *http.Response
 		return nil, nil, err
 	}
 
-	req, err := js.client.NewRequest(http.MethodPost, u, nil, nil)
+	req, err := js.client.NewRequest(http.MethodPost, u, js.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}

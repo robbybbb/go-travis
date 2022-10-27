@@ -8,7 +8,6 @@ package travis
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/http"
 	"net/url"
 )
@@ -164,15 +163,9 @@ func (bs *BuildsService) Find(ctx context.Context, id uint, opt *BuildOption) (*
 //
 // Travis CI API docs: https://developer.travis-ci.com/resource/builds#for_current_user
 func (bs *BuildsService) List(ctx context.Context, opt *BuildsOption) ([]*Build, *http.Response, error) {
-	log.Printf("Made it here Build List: %v", 3)
 	u, err := urlWithOptions("builds", opt)
 	if err != nil {
 		return nil, nil, err
-	}
-
-	var h = bs.client.Headers
-	for k, v := range h {
-		log.Printf("Build List Headers k, v: %s %s", k, v)
 	}
 
 	req, err := bs.client.NewRequest(http.MethodGet, u, bs.client.Headers, nil)
@@ -198,7 +191,7 @@ func (bs *BuildsService) ListByRepoId(ctx context.Context, repoId uint, opt *Bui
 		return nil, nil, err
 	}
 
-	req, err := bs.client.NewRequest(http.MethodGet, u, nil, nil)
+	req, err := bs.client.NewRequest(http.MethodGet, u, bs.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -221,7 +214,7 @@ func (bs *BuildsService) ListByRepoSlug(ctx context.Context, repoSlug string, op
 		return nil, nil, err
 	}
 
-	req, err := bs.client.NewRequest(http.MethodGet, u, nil, nil)
+	req, err := bs.client.NewRequest(http.MethodGet, u, bs.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -244,7 +237,7 @@ func (bs *BuildsService) Cancel(ctx context.Context, id uint) (*Build, *http.Res
 		return nil, nil, err
 	}
 
-	req, err := bs.client.NewRequest(http.MethodPost, u, nil, nil)
+	req, err := bs.client.NewRequest(http.MethodPost, u, bs.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -267,7 +260,7 @@ func (bs *BuildsService) Restart(ctx context.Context, id uint) (*Build, *http.Re
 		return nil, nil, err
 	}
 
-	req, err := bs.client.NewRequest(http.MethodPost, u, nil, nil)
+	req, err := bs.client.NewRequest(http.MethodPost, u, bs.client.Headers, nil)
 	if err != nil {
 		return nil, nil, err
 	}
